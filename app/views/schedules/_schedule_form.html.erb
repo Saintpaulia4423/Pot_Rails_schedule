@@ -1,8 +1,5 @@
-<% provide(:title, "スケジュール登録") %>
-<h3>スケジュール登録</h3>
-
-<%= form_with(model: @app) do |f| %>
-  <table>
+<%= form_with model: @schedule do |f| %>
+  <table class="col-md-6 text-center form-base">
     <tr>
       <th><%= f.label :title , "予定名" %></th>
       <td><%= f.text_field :title, class: "form-control" %></td>
@@ -20,7 +17,7 @@
 
     <tr>
       <th><%= f.label :all_day, "終日予定" %></th>
-      <td><%= f.radio_button :all_day, "終日", class: "form-control"  %></td>
+      <td><%= f.check_box :all_day, class: "form-control"  %></td>
     </tr>
 
     <tr>
@@ -29,10 +26,7 @@
     </tr>
   </table>
 
-  <div>
-    <ul>
-      <li><%= f.submit "登録",  class: "btn btn-primary" %></li>
-      <li><%= link_to "一覧へ", "index" %></li>
-    </ul>
+  <div class="submit-btn">
+      <%= f.submit yield(:button_text),  class: "btn btn-primary" %>
   </div>
 <% end %>

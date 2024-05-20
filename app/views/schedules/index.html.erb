@@ -1,0 +1,41 @@
+
+
+<div class="container-xl">
+  <h3>スケジュール一覧</h3>
+  <table>
+    <thead>
+      <tr class="index-col text-center">
+        <th>登録番号</th>
+        <th>タイトル</th>
+        <th>開始日</th>
+        <th>終了日</th>
+        <th>終日設定</th>
+        <th>更新日</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <br>
+    <tbody class="index-col">
+      <p>スケジュールは合計 <%= @schedules.count %>件あります</p>
+      <% @schedules.each do |schedule| %>
+        <tr>
+          <td class="text-center"><%= schedule.id %></td>
+          <td class="text-center"><%= schedule.title %></td>
+          <td><%= schedule.start_day.strftime("%Y/%m/%d") %></td>
+          <td><%= schedule.end_day.strftime("%Y/%m/%d") %></td>
+          <td class="text-center"> 
+            <% if schedule.all_day %>
+              ⚪︎
+            <% end %>
+          </td>
+          <td><%= schedule.updated_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+          <td>
+            <%= link_to "詳細確認", schedule_path(schedule), class: "btn btn-primary" %>
+            <%= link_to "編集", edit_schedule_path(schedule), class: "btn btn-primary" %>
+            <%= link_to "削除", schedule_path(schedule) , method: :delete, data: { confirm: "削除しますか？" }, class: "btn btn-primary" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
