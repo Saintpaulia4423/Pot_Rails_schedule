@@ -6,10 +6,10 @@ class SchedulesController < ApplicationController
   def create
     @schedule = Schedule.new(schedule_params)
     if @schedule.save
-      flash[:info] = "スケジュールが作成されました"
+      flash.now[:info] = "スケジュールが作成されました"
       redirect_to :index
     else
-      flash[:warning] = @schedule.errors.full_messages 
+      flash.now[:warning] = "入力内容に問題があります！"
       render "new"
     end
   end
@@ -21,10 +21,10 @@ class SchedulesController < ApplicationController
   def update
     @schedule = Schedule.find(params[:id])
     if @schedule.update(schedule_params)
-      flash[:info] = "スケジュールが更新されました"
+      flash.now[:info] = "スケジュールが更新されました"
       redirect_to :index
     else
-      flash[:warning] = @schedule.errors.full_messages
+      flash.now[:warning] = "入力内容に問題があります！"
       render "edit"
     end
   end
@@ -39,7 +39,7 @@ class SchedulesController < ApplicationController
 
   def destroy
     Schedule.find(params[:id]).destroy
-    flash[:success] = "スケジュールが削除されました"
+    flash.now[:success] = "スケジュールが削除されました"
     redirect_to :index
   end
 

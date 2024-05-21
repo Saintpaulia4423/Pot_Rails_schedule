@@ -1,4 +1,14 @@
 <%= form_with model: @schedule do |f| %>
+  <% if @schedule.errors.any? %>
+    <div class="alert">
+      <ul>
+        <% @schedule.errors.full_messages.each do |errormessage| %>
+          <li><%= errormessage %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <table class="col-md-6 text-center form-base">
     <tr>
       <th><%= f.label :title , "予定名" %></th>
