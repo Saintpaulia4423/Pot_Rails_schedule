@@ -1,0 +1,31 @@
+<% provide(:title, "スケジュール詳細") %>
+<h3>スケジュール確認</h3>
+
+  <table class="col-md-6 text-center show-base">
+  <tr>
+    <th>予定名</th>
+    <td><%= @schedule.title %></td>
+  </tr>
+  <tr>
+    <th>開始日</th>
+    <td><%= @schedule.start_day.strftime("%Y/%m/%d") %></td>
+  </tr>
+  <tr>
+    <th>終了日</th>
+    <td><%= @schedule.end_day.strftime("%Y/%m/%d") %></td>
+  </tr>
+  <tr>
+    <th>終日か</th>
+    <td>
+      <% if @schedule.all_day %>
+        ⚪︎
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <th>詳細内容</th>
+    <td><%= @schedule.memo %></td>
+  </tr>
+</table>
+<%= link_to "編集", edit_schedule_path(@schedule), class: "btn btn-primary"%>
+<%= link_to "一覧へ", "/index" , class: "btn btn-primary"%>
